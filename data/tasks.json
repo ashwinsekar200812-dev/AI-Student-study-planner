@@ -1,0 +1,46 @@
+[
+  {
+    "id": "mv65dgvy43fg35a3er",
+    "title": "Calculus Final Exam",
+    "subject": "Mathematics",
+    "type": "Exam",
+    "deadline": "2026-10-20T03:30:00.000Z",
+    "hours": 12,
+    "weight": 5,
+    "completed": false,
+    "createdAt": "2026-10-13T03:54:46.079Z"
+  },
+  {
+    "id": "mv65dgwdulbglkeik7",
+    "title": "Literature Essay",
+    "subject": "English Lit",
+    "type": "Assignment",
+    "deadline": "2026-10-17T18:29:00.000Z",
+    "hours": 6,
+    "weight": 3,
+    "completed": false,
+    "createdAt": "2026-10-13T03:54:46.094Z"
+  },
+  {
+    "id": "mv65dgwm3vwd9oicc14",
+    "title": "Physics Lab Report",
+    "subject": "Physics",
+    "type": "Assignment",
+    "deadline": "2026-10-16T18:29:00.000Z",
+    "hours": 4,
+    "weight": 4,
+    "completed": true,
+    "createdAt": "2026-10-13T03:54:46.102Z"
+  },
+  {
+    "id": "mv65dgx446p8int006g",
+    "title": "Chemistry Quiz Prep",
+    "subject": "Chemistry",
+    "type": "Revision",
+    "deadline": "2026-10-15T08:30:00.000Z",
+    "hours": 2,
+    "weight": 3,
+    "completed": false,
+    "createdAt": "2026-10-13T03:54:46.120Z"
+  }
+]

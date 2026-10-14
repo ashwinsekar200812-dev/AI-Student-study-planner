@@ -1,0 +1,1080 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Smart Study Planner</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- ===== SIDEBAR ===== -->
+  <nav class="sidebar" id="sidebar">
+    <div class="sidebar-header">
+      <span class="logo-icon">📚</span>
+      <div>
+        <div class="logo-text">StudyPlanner</div>
+        <div class="sidebar-tagline">Smart · Scheduled · Focused</div>
+      </div>
+    </div>
+    <ul class="nav-links">
+      <li><a href="#" class="nav-link active" data-section="dashboard">
+        <span class="nav-icon">🏠</span><span>Dashboard</span>
+      </a></li>
+      <li><a href="#" class="nav-link" data-section="tasks">
+        <span class="nav-icon">📋</span><span>Tasks</span>
+      </a></li>
+      <li><a href="#" class="nav-link" data-section="timetable">
+        <span class="nav-icon">📅</span><span>Timetable</span>
+      </a></li>
+      <li><a href="#" class="nav-link" data-section="availability">
+        <span class="nav-icon">⏰</span><span>Availability</span>
+      </a></li>
+      <li><a href="#" class="nav-link" data-section="profile">
+        <span class="nav-icon">👤</span><span>Profile</span>
+      </a></li>
+      <li><a href="#" class="nav-link" data-section="subjects">
+        <span class="nav-icon">🗺️</span><span>Subjects</span>
+      </a></li>
+      <li><a href="#" class="nav-link" data-section="revision">
+        <span class="nav-icon">🔁</span><span>Revision Queue</span>
+      </a></li>
+      <li><a href="#" class="nav-link" data-section="readiness">
+        <span class="nav-icon">🎯</span><span>Exam Readiness</span>
+      </a></li>
+      <li><a href="#" class="nav-link" data-section="dailyreview">
+        <span class="nav-icon">📓</span><span>Daily Review</span>
+      </a></li>
+    </ul>
+
+    <!-- Sidebar profile mini-card -->
+    <div class="sidebar-profile" id="sidebarProfile">
+      <div class="sp-avatar" id="spAvatar">S</div>
+      <div class="sp-info">
+        <div class="sp-name" id="spName">Student</div>
+        <div class="sp-course" id="spCourse">Add your course →</div>
+      </div>
+      <button class="sp-edit-btn" data-section="profile" title="Edit Profile">✏️</button>
+    </div>
+
+    <!-- Sidebar cartoon: tiny reading owl -->
+    <div class="sidebar-mascot" aria-hidden="true">
+      <svg viewBox="0 0 80 90" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <!-- body -->
+        <ellipse cx="40" cy="58" rx="22" ry="26" fill="#2e3f6e"/>
+        <!-- belly -->
+        <ellipse cx="40" cy="62" rx="13" ry="16" fill="#f5f0e8"/>
+        <!-- head -->
+        <ellipse cx="40" cy="34" rx="19" ry="18" fill="#2e3f6e"/>
+        <!-- left ear -->
+        <polygon points="24,20 20,6 30,16" fill="#2e3f6e"/>
+        <!-- right ear -->
+        <polygon points="56,20 60,6 50,16" fill="#2e3f6e"/>
+        <!-- left eye white -->
+        <circle cx="32" cy="33" r="7" fill="white"/>
+        <!-- right eye white -->
+        <circle cx="48" cy="33" r="7" fill="white"/>
+        <!-- left pupil -->
+        <circle cx="33" cy="34" r="4" fill="#1a2744"/>
+        <!-- right pupil -->
+        <circle cx="49" cy="34" r="4" fill="#1a2744"/>
+        <!-- left eye shine -->
+        <circle cx="34" cy="32" r="1.5" fill="white"/>
+        <circle cx="50" cy="32" r="1.5" fill="white"/>
+        <!-- beak -->
+        <polygon points="40,38 37,43 43,43" fill="#f59e0b"/>
+        <!-- book -->
+        <rect x="18" y="70" width="44" height="14" rx="3" fill="#f59e0b"/>
+        <rect x="18" y="70" width="22" height="14" rx="2" fill="#d97706"/>
+        <line x1="40" y1="70" x2="40" y2="84" stroke="#1a2744" stroke-width="1.5"/>
+        <!-- wings holding book -->
+        <ellipse cx="21" cy="72" rx="6" ry="9" fill="#243152" transform="rotate(-20 21 72)"/>
+        <ellipse cx="59" cy="72" rx="6" ry="9" fill="#243152" transform="rotate(20 59 72)"/>
+      </svg>
+      <div class="mascot-label">Your Study Buddy</div>
+    </div>
+
+    <div class="sidebar-footer">
+      <button class="btn btn-outline btn-sm" id="resetBtn">🔄 Reset Demo</button>
+    </div>
+  </nav>
+
+  <!-- ===== TOPBAR (mobile) ===== -->
+  <header class="topbar">
+    <button class="hamburger" id="hamburger" aria-label="Toggle menu">☰</button>
+    <span class="topbar-title">📚 StudyPlanner</span>
+    <button class="btn btn-primary btn-sm" id="addTaskBtnTop">+ Add Task</button>
+  </header>
+
+  <!-- ===== MAIN CONTENT ===== -->
+  <main class="main-content" id="mainContent">
+
+    <!-- ===== DASHBOARD ===== -->
+    <section class="section active" id="section-dashboard">
+
+      <!-- Hero banner with cartoon -->
+      <div class="hero-banner">
+        <div class="hero-text">
+          <h1>Good day, Scholar! 👋</h1>
+          <p class="subtitle">Here's your study overview. Stay on track and crush those deadlines.</p>
+        </div>
+        <!-- Cartoon: student at desk -->
+        <div class="hero-illustration" aria-hidden="true">
+          <svg viewBox="0 0 200 140" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <!-- desk -->
+            <rect x="20" y="100" width="160" height="8" rx="4" fill="#d97706"/>
+            <rect x="30" y="108" width="8" height="28" rx="3" fill="#b45309"/>
+            <rect x="162" y="108" width="8" height="28" rx="3" fill="#b45309"/>
+            <!-- monitor -->
+            <rect x="110" y="58" width="60" height="42" rx="5" fill="#1a2744"/>
+            <rect x="113" y="61" width="54" height="36" rx="3" fill="#2563eb"/>
+            <!-- screen content lines -->
+            <rect x="117" y="66" width="30" height="3" rx="1.5" fill="rgba(255,255,255,0.6)"/>
+            <rect x="117" y="72" width="22" height="3" rx="1.5" fill="rgba(255,255,255,0.4)"/>
+            <rect x="117" y="78" width="26" height="3" rx="1.5" fill="rgba(255,255,255,0.4)"/>
+            <rect x="117" y="84" width="18" height="3" rx="1.5" fill="#f59e0b"/>
+            <!-- monitor stand -->
+            <rect x="135" y="100" width="10" height="5" rx="2" fill="#1a2744"/>
+            <rect x="128" y="105" width="24" height="3" rx="1.5" fill="#1a2744"/>
+            <!-- open books on desk -->
+            <rect x="30" y="82" width="42" height="26" rx="3" fill="#f59e0b"/>
+            <rect x="30" y="82" width="21" height="26" rx="2" fill="#d97706"/>
+            <line x1="51" y1="82" x2="51" y2="108" stroke="#1a2744" stroke-width="1.5"/>
+            <line x1="34" y1="90" x2="48" y2="90" stroke="#1a2744" stroke-width="1" opacity="0.4"/>
+            <line x1="34" y1="95" x2="48" y2="95" stroke="#1a2744" stroke-width="1" opacity="0.4"/>
+            <line x1="55" y1="90" x2="68" y2="90" stroke="#1a2744" stroke-width="1" opacity="0.4"/>
+            <line x1="55" y1="95" x2="68" y2="95" stroke="#1a2744" stroke-width="1" opacity="0.4"/>
+            <!-- student body -->
+            <rect x="70" y="60" width="30" height="42" rx="6" fill="#3b5bdb"/>
+            <!-- student head -->
+            <circle cx="85" cy="48" r="16" fill="#fcd9a0"/>
+            <!-- hair -->
+            <ellipse cx="85" cy="35" rx="16" ry="8" fill="#7c3aed"/>
+            <ellipse cx="71" cy="44" rx="4" ry="8" fill="#7c3aed"/>
+            <ellipse cx="99" cy="44" rx="4" ry="8" fill="#7c3aed"/>
+            <!-- eyes -->
+            <circle cx="79" cy="48" r="2.5" fill="#1a2744"/>
+            <circle cx="91" cy="48" r="2.5" fill="#1a2744"/>
+            <circle cx="80" cy="47" r="1" fill="white"/>
+            <circle cx="92" cy="47" r="1" fill="white"/>
+            <!-- smile -->
+            <path d="M79 54 Q85 59 91 54" stroke="#1a2744" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+            <!-- arm pointing at screen -->
+            <rect x="100" y="68" width="28" height="7" rx="3.5" fill="#fcd9a0" transform="rotate(-15 100 68)"/>
+            <!-- pencil in hand -->
+            <rect x="124" y="58" width="5" height="18" rx="2" fill="#f59e0b" transform="rotate(-15 124 58)"/>
+            <polygon points="124,74 129,74 126.5,80" fill="#fcd9a0" transform="rotate(-15 126 74)"/>
+            <!-- stars around head -->
+            <text x="100" y="30" font-size="10" fill="#f59e0b">✦</text>
+            <text x="58" y="36" font-size="8" fill="#f59e0b">✦</text>
+            <text x="152" y="52" font-size="8" fill="#f59e0b">✦</text>
+            <!-- coffee mug -->
+            <rect x="82" y="88" width="16" height="14" rx="3" fill="#f5f0e8"/>
+            <path d="M98 92 Q104 92 104 97 Q104 102 98 102" stroke="#d97706" stroke-width="2" fill="none"/>
+            <rect x="84" y="90" width="12" height="4" rx="1" fill="#7c3aed" opacity="0.3"/>
+            <!-- steam from coffee -->
+            <path d="M87 87 Q88 83 87 80" stroke="#94a3b8" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+            <path d="M91 86 Q92 82 91 79" stroke="#94a3b8" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+            <path d="M95 87 Q96 83 95 80" stroke="#94a3b8" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+          </svg>
+        </div>
+      </div>
+
+      <!-- Stats row -->
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-icon">⏳</div>
+          <div class="stat-info">
+            <div class="stat-value" id="statTotalHours">0h</div>
+            <div class="stat-label">Total Required Hours</div>
+          </div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon">✅</div>
+          <div class="stat-info">
+            <div class="stat-value" id="statScheduled">0h</div>
+            <div class="stat-label">Scheduled Hours</div>
+          </div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon">⚠️</div>
+          <div class="stat-info">
+            <div class="stat-value" id="statUnscheduled">0h</div>
+            <div class="stat-label">Unscheduled Hours</div>
+          </div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon">🎯</div>
+          <div class="stat-info">
+            <div class="stat-value" id="statCompleted">0 / 0</div>
+            <div class="stat-label">Tasks Completed</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Warnings -->
+      <div id="warningArea" class="warning-area" style="display:none;"></div>
+
+      <!-- Overall progress -->
+      <div class="card">
+        <h2 class="card-title">Overall Progress</h2>
+        <div class="progress-row">
+          <span class="progress-label" id="progressLabel">0% complete</span>
+          <div class="progress-bar-wrap">
+            <div class="progress-bar" id="progressBar" style="width:0%"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Upcoming deadlines -->
+      <div class="card">
+        <div class="card-header-row">
+          <h2 class="card-title">Upcoming Deadlines</h2>
+          <button class="btn btn-primary btn-sm" id="addTaskBtnDash">+ Add Task</button>
+        </div>
+        <div id="upcomingList" class="deadline-list"></div>
+      </div>
+
+      <!-- Mini timetable this week -->
+      <div class="card">
+        <div class="card-header-row">
+          <h2 class="card-title">This Week's Schedule</h2>
+          <button class="btn btn-primary btn-sm" id="regenBtnDash">↺ Regenerate</button>
+        </div>
+        <div id="miniTimetable" class="mini-timetable"></div>
+      </div>
+    </section>
+
+    <!-- ===== TASKS ===== -->
+    <section class="section" id="section-tasks">
+
+      <!-- Tasks hero banner -->
+      <div class="section-hero tasks-hero">
+        <div class="hero-text">
+          <h1>Tasks</h1>
+          <p class="subtitle">Manage your exams, assignments, and revision sessions</p>
+        </div>
+        <!-- Cartoon: clipboard with pencil -->
+        <div class="section-illustration" aria-hidden="true">
+          <svg viewBox="0 0 120 130" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <!-- clipboard body -->
+            <rect x="15" y="20" width="90" height="105" rx="8" fill="#f5f0e8"/>
+            <rect x="15" y="20" width="90" height="105" rx="8" stroke="#d97706" stroke-width="2"/>
+            <!-- clip -->
+            <rect x="42" y="12" width="36" height="16" rx="6" fill="#d97706"/>
+            <rect x="48" y="10" width="24" height="12" rx="4" fill="#f59e0b"/>
+            <rect x="54" y="12" width="12" height="8" rx="3" fill="#1a2744"/>
+            <!-- title line -->
+            <rect x="28" y="36" width="64" height="6" rx="3" fill="#1a2744" opacity="0.15"/>
+            <!-- check items -->
+            <rect x="28" y="52" width="8" height="8" rx="2" fill="#16a34a"/>
+            <path d="M30 56 L32 58 L36 53" stroke="white" stroke-width="1.5" stroke-linecap="round" fill="none"/>
+            <rect x="42" y="53" width="38" height="5" rx="2.5" fill="#1a2744" opacity="0.2"/>
+
+            <rect x="28" y="68" width="8" height="8" rx="2" fill="#16a34a"/>
+            <path d="M30 72 L32 74 L36 69" stroke="white" stroke-width="1.5" stroke-linecap="round" fill="none"/>
+            <rect x="42" y="69" width="44" height="5" rx="2.5" fill="#1a2744" opacity="0.2"/>
+
+            <rect x="28" y="84" width="8" height="8" rx="2" fill="#e2e8f0" stroke="#94a3b8" stroke-width="1"/>
+            <rect x="42" y="85" width="32" height="5" rx="2.5" fill="#1a2744" opacity="0.2"/>
+
+            <rect x="28" y="100" width="8" height="8" rx="2" fill="#e2e8f0" stroke="#94a3b8" stroke-width="1"/>
+            <rect x="42" y="101" width="40" height="5" rx="2.5" fill="#1a2744" opacity="0.2"/>
+
+            <!-- pencil overlay -->
+            <g transform="rotate(35 90 90)">
+              <rect x="82" y="55" width="10" height="40" rx="3" fill="#f59e0b"/>
+              <rect x="82" y="55" width="10" height="8" rx="3" fill="#fcd9a0"/>
+              <polygon points="82,95 92,95 87,108" fill="#fcd9a0"/>
+              <polygon points="85,103 89,103 87,108" fill="#1a2744"/>
+              <rect x="82" y="91" width="10" height="4" fill="#e11d48"/>
+            </g>
+
+            <!-- stars -->
+            <text x="88" y="28" font-size="10" fill="#f59e0b">★</text>
+            <text x="14" y="28" font-size="8" fill="#f59e0b">★</text>
+          </svg>
+        </div>
+      </div>
+
+      <!-- Add / Edit form -->
+      <div class="card" id="taskFormCard">
+        <h2 class="card-title" id="formTitle">Add New Task</h2>
+        <form id="taskForm" novalidate>
+          <div class="form-grid">
+            <div class="form-group">
+              <label for="taskTitle">Title *</label>
+              <input type="text" id="taskTitle" placeholder="e.g. Calculus Final Exam" maxlength="80" />
+            </div>
+            <div class="form-group">
+              <label for="taskSubject">Subject *</label>
+              <input type="text" id="taskSubject" placeholder="e.g. Mathematics" maxlength="60" />
+            </div>
+            <div class="form-group">
+              <label for="taskType">Type *</label>
+              <select id="taskType">
+                <option value="Exam">Exam</option>
+                <option value="Assignment">Assignment</option>
+                <option value="Revision">Revision</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="taskDeadline">Deadline *</label>
+              <input type="datetime-local" id="taskDeadline" />
+            </div>
+            <div class="form-group">
+              <label for="taskHours">Estimated Prep Hours *</label>
+              <input type="number" id="taskHours" min="0.5" max="200" step="0.5" placeholder="e.g. 10" />
+            </div>
+            <div class="form-group">
+              <label for="taskImportance">Importance (1–5) *</label>
+              <div class="star-row" id="starRow">
+                <span class="star" data-val="1">★</span>
+                <span class="star" data-val="2">★</span>
+                <span class="star" data-val="3">★</span>
+                <span class="star" data-val="4">★</span>
+                <span class="star" data-val="5">★</span>
+              </div>
+              <input type="hidden" id="taskImportance" value="3" />
+            </div>
+          </div>
+          <div class="form-error" id="formError"></div>
+          <div class="form-actions">
+            <button type="submit" class="btn btn-primary" id="taskSubmitBtn">Add Task</button>
+            <button type="button" class="btn btn-ghost" id="taskCancelBtn" style="display:none">Cancel</button>
+          </div>
+        </form>
+      </div>
+
+      <!-- Filter bar -->
+      <div class="filter-bar">
+        <button class="filter-btn active" data-filter="all">All</button>
+        <button class="filter-btn" data-filter="Exam">Exams</button>
+        <button class="filter-btn" data-filter="Assignment">Assignments</button>
+        <button class="filter-btn" data-filter="Revision">Revision</button>
+        <button class="filter-btn" data-filter="pending">Pending</button>
+        <button class="filter-btn" data-filter="completed">Completed</button>
+      </div>
+
+      <div id="taskList" class="task-list"></div>
+    </section>
+
+    <!-- ===== TIMETABLE ===== -->
+    <section class="section" id="section-timetable">
+
+      <!-- Timetable hero -->
+      <div class="section-hero timetable-hero">
+        <div class="hero-text">
+          <h1>Weekly Timetable</h1>
+          <p class="subtitle">Auto-generated priority-based study schedule</p>
+        </div>
+        <!-- Cartoon: calendar with clock -->
+        <div class="section-illustration" aria-hidden="true">
+          <svg viewBox="0 0 130 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <!-- calendar body -->
+            <rect x="10" y="22" width="90" height="88" rx="8" fill="white" stroke="#e2e8f0" stroke-width="2"/>
+            <!-- calendar header -->
+            <rect x="10" y="22" width="90" height="28" rx="8" fill="#1a2744"/>
+            <rect x="10" y="38" width="90" height="12" fill="#1a2744"/>
+            <!-- calendar rings -->
+            <rect x="32" y="14" width="8" height="16" rx="4" fill="#64748b"/>
+            <rect x="70" y="14" width="8" height="16" rx="4" fill="#64748b"/>
+            <!-- month label -->
+            <rect x="28" y="28" width="44" height="7" rx="3" fill="rgba(255,255,255,0.3)"/>
+            <!-- day headers -->
+            <rect x="16" y="56" width="10" height="6" rx="2" fill="#94a3b8" opacity="0.5"/>
+            <rect x="30" y="56" width="10" height="6" rx="2" fill="#94a3b8" opacity="0.5"/>
+            <rect x="44" y="56" width="10" height="6" rx="2" fill="#94a3b8" opacity="0.5"/>
+            <rect x="58" y="56" width="10" height="6" rx="2" fill="#94a3b8" opacity="0.5"/>
+            <rect x="72" y="56" width="10" height="6" rx="2" fill="#94a3b8" opacity="0.5"/>
+            <rect x="86" y="56" width="8" height="6" rx="2" fill="#94a3b8" opacity="0.5"/>
+            <!-- day cells row 1 -->
+            <rect x="16" y="67" width="10" height="9" rx="2" fill="#eff6ff"/>
+            <rect x="30" y="67" width="10" height="9" rx="2" fill="#eff6ff"/>
+            <rect x="44" y="67" width="10" height="9" rx="2" fill="#f59e0b"/>
+            <rect x="58" y="67" width="10" height="9" rx="2" fill="#eff6ff"/>
+            <rect x="72" y="67" width="10" height="9" rx="2" fill="#eff6ff"/>
+            <rect x="86" y="67" width="8" height="9" rx="2" fill="#eff6ff"/>
+            <!-- day cells row 2 -->
+            <rect x="16" y="80" width="10" height="9" rx="2" fill="#eff6ff"/>
+            <rect x="30" y="80" width="10" height="9" rx="2" fill="#dcfce7"/>
+            <rect x="44" y="80" width="10" height="9" rx="2" fill="#dcfce7"/>
+            <rect x="58" y="80" width="10" height="9" rx="2" fill="#eff6ff"/>
+            <rect x="72" y="80" width="10" height="9" rx="2" fill="#dcfce7"/>
+            <rect x="86" y="80" width="8" height="9" rx="2" fill="#eff6ff"/>
+            <!-- day cells row 3 -->
+            <rect x="16" y="93" width="10" height="9" rx="2" fill="#eff6ff"/>
+            <rect x="30" y="93" width="10" height="9" rx="2" fill="#eff6ff"/>
+            <rect x="44" y="93" width="10" height="9" rx="2" fill="#fee2e2"/>
+            <rect x="58" y="93" width="10" height="9" rx="2" fill="#eff6ff"/>
+            <rect x="72" y="93" width="10" height="9" rx="2" fill="#eff6ff"/>
+            <rect x="86" y="93" width="8" height="9" rx="2" fill="#dcfce7"/>
+            <!-- clock -->
+            <circle cx="108" cy="52" r="20" fill="white" stroke="#1a2744" stroke-width="2.5"/>
+            <circle cx="108" cy="52" r="2.5" fill="#1a2744"/>
+            <!-- clock hands -->
+            <line x1="108" y1="52" x2="108" y2="38" stroke="#1a2744" stroke-width="2" stroke-linecap="round"/>
+            <line x1="108" y1="52" x2="118" y2="56" stroke="#f59e0b" stroke-width="2.5" stroke-linecap="round"/>
+            <!-- clock ticks -->
+            <line x1="108" y1="34" x2="108" y2="37" stroke="#94a3b8" stroke-width="1.5"/>
+            <line x1="108" y1="67" x2="108" y2="70" stroke="#94a3b8" stroke-width="1.5"/>
+            <line x1="90" y1="52" x2="93" y2="52" stroke="#94a3b8" stroke-width="1.5"/>
+            <line x1="123" y1="52" x2="126" y2="52" stroke="#94a3b8" stroke-width="1.5"/>
+            <!-- alarm bells -->
+            <circle cx="98" cy="36" r="4" fill="#f59e0b"/>
+            <circle cx="118" cy="36" r="4" fill="#f59e0b"/>
+            <line x1="108" y1="32" x2="108" y2="30" stroke="#1a2744" stroke-width="2"/>
+          </svg>
+        </div>
+      </div>
+
+      <div class="algo-note">
+        ℹ️ This planner uses a <strong>deterministic priority-based greedy algorithm</strong> — not an AI service. Tasks are scored by deadline urgency, importance, and effort, then scheduled into your available windows.
+      </div>
+      <div class="card">
+        <div class="card-header-row">
+          <div class="week-nav">
+            <button class="btn btn-ghost btn-sm" id="prevWeekBtn">◀ Prev</button>
+            <span id="weekLabel" class="week-label"></span>
+            <button class="btn btn-ghost btn-sm" id="nextWeekBtn">Next ▶</button>
+          </div>
+          <button class="btn btn-primary btn-sm" id="regenBtn">↺ Regenerate</button>
+        </div>
+        <div id="timetableGrid" class="timetable-grid"></div>
+      </div>
+
+      <!-- Schedule summary -->
+      <div class="card" id="scheduleSummaryCard">
+        <h2 class="card-title">Schedule Summary</h2>
+        <div id="scheduleSummary"></div>
+      </div>
+    </section>
+
+    <!-- ===== AVAILABILITY ===== -->
+    <section class="section" id="section-availability">
+
+      <!-- Availability hero -->
+      <div class="section-hero avail-hero">
+        <div class="hero-text">
+          <h1>Study Availability</h1>
+          <p class="subtitle">Set your daily study windows. The scheduler will only book sessions within these times.</p>
+        </div>
+        <!-- Cartoon: student with schedule board -->
+        <div class="section-illustration" aria-hidden="true">
+          <svg viewBox="0 0 130 130" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <!-- whiteboard -->
+            <rect x="8" y="10" width="88" height="72" rx="6" fill="white" stroke="#e2e8f0" stroke-width="2"/>
+            <rect x="8" y="10" width="88" height="14" rx="6" fill="#1a2744"/>
+            <rect x="8" y="18" width="88" height="6" fill="#1a2744"/>
+            <!-- board tray -->
+            <rect x="8" y="80" width="88" height="5" rx="2" fill="#94a3b8"/>
+            <!-- legs -->
+            <line x1="25" y1="85" x2="18" y2="115" stroke="#94a3b8" stroke-width="3" stroke-linecap="round"/>
+            <line x1="79" y1="85" x2="86" y2="115" stroke="#94a3b8" stroke-width="3" stroke-linecap="round"/>
+            <line x1="18" y1="115" x2="36" y2="115" stroke="#94a3b8" stroke-width="3" stroke-linecap="round"/>
+            <line x1="68" y1="115" x2="86" y2="115" stroke="#94a3b8" stroke-width="3" stroke-linecap="round"/>
+            <!-- title on board -->
+            <rect x="20" y="14" width="36" height="5" rx="2" fill="rgba(255,255,255,0.35)"/>
+            <!-- time rows on board -->
+            <rect x="14" y="30" width="14" height="5" rx="2" fill="#f59e0b" opacity="0.7"/>
+            <rect x="32" y="30" width="20" height="5" rx="2" fill="#dcfce7"/>
+            <rect x="56" y="30" width="16" height="5" rx="2" fill="#dcfce7"/>
+            <rect x="14" y="40" width="14" height="5" rx="2" fill="#f59e0b" opacity="0.7"/>
+            <rect x="32" y="40" width="32" height="5" rx="2" fill="#dbeafe"/>
+            <rect x="14" y="50" width="14" height="5" rx="2" fill="#f59e0b" opacity="0.7"/>
+            <rect x="32" y="50" width="20" height="5" rx="2" fill="#dcfce7"/>
+            <rect x="56" y="50" width="24" height="5" rx="2" fill="#ede9fe"/>
+            <rect x="14" y="60" width="14" height="5" rx="2" fill="#f59e0b" opacity="0.7"/>
+            <rect x="32" y="60" width="28" height="5" rx="2" fill="#dbeafe"/>
+            <!-- student figure -->
+            <!-- body -->
+            <rect x="95" y="70" width="28" height="38" rx="6" fill="#7c3aed"/>
+            <!-- head -->
+            <circle cx="109" cy="56" r="16" fill="#fcd9a0"/>
+            <!-- hair -->
+            <ellipse cx="109" cy="43" rx="16" ry="8" fill="#1e293b"/>
+            <ellipse cx="95" cy="52" rx="4" ry="8" fill="#1e293b"/>
+            <ellipse cx="123" cy="52" rx="4" ry="8" fill="#1e293b"/>
+            <!-- eyes -->
+            <circle cx="103" cy="56" r="2.5" fill="#1a2744"/>
+            <circle cx="115" cy="56" r="2.5" fill="#1a2744"/>
+            <circle cx="104" cy="55" r="1" fill="white"/>
+            <circle cx="116" cy="55" r="1" fill="white"/>
+            <!-- smile -->
+            <path d="M103 62 Q109 67 115 62" stroke="#1a2744" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+            <!-- pointer arm -->
+            <rect x="78" y="62" width="24" height="7" rx="3.5" fill="#fcd9a0" transform="rotate(-5 78 62)"/>
+            <!-- pointer stick -->
+            <line x1="79" y1="64" x2="64" y2="55" stroke="#7c3aed" stroke-width="2.5" stroke-linecap="round"/>
+            <circle cx="63" cy="54" r="3" fill="#f59e0b"/>
+          </svg>
+        </div>
+      </div>
+
+      <div class="card">
+        <h2 class="card-title">Session Settings</h2>
+        <div class="form-grid">
+          <div class="form-group">
+            <label for="sessionLength">Session Length (minutes)</label>
+            <input type="number" id="sessionLength" min="30" max="180" step="15" value="60" />
+          </div>
+          <div class="form-group">
+            <label for="breakLength">Break Between Sessions (minutes)</label>
+            <input type="number" id="breakLength" min="0" max="60" step="5" value="10" />
+          </div>
+        </div>
+        <button class="btn btn-primary btn-sm" id="saveSettings">Save Settings</button>
+      </div>
+
+      <div class="card" id="availabilityCard">
+        <h2 class="card-title">Daily Availability</h2>
+        <p class="help-text">Add one or more study windows per day. Times must not overlap.</p>
+        <div id="availabilityEditor"></div>
+        <div class="form-error" id="availError"></div>
+        <button class="btn btn-primary" id="saveAvailBtn">Save Availability & Regenerate</button>
+      </div>
+    </section>
+
+    <!-- ===== PROFILE ===== -->
+    <section class="section" id="section-profile">
+
+      <div class="section-hero profile-hero">
+        <div class="hero-text">
+          <h1>Student Profile</h1>
+          <p class="subtitle">Personalise your planner — your details appear across the app</p>
+        </div>
+        <!-- Cartoon: student ID card -->
+        <div class="section-illustration" aria-hidden="true">
+          <svg viewBox="0 0 130 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <!-- card body -->
+            <rect x="10" y="15" width="110" height="90" rx="10" fill="white" stroke="#e2e8f0" stroke-width="2"/>
+            <!-- card header strip -->
+            <rect x="10" y="15" width="110" height="28" rx="10" fill="#1a2744"/>
+            <rect x="10" y="33" width="110" height="10" fill="#1a2744"/>
+            <!-- institution name -->
+            <rect x="28" y="22" width="60" height="6" rx="3" fill="rgba(255,255,255,0.3)"/>
+            <rect x="44" y="31" width="30" height="4" rx="2" fill="rgba(245,158,11,0.6)"/>
+            <!-- avatar circle -->
+            <circle cx="38" cy="66" r="20" fill="#eff6ff" stroke="#bfdbfe" stroke-width="2"/>
+            <circle cx="38" cy="61" r="9" fill="#93c5fd"/>
+            <ellipse cx="38" cy="80" rx="14" ry="8" fill="#93c5fd"/>
+            <!-- info lines -->
+            <rect x="64" y="50" width="46" height="6" rx="3" fill="#1a2744" opacity="0.8"/>
+            <rect x="64" y="62" width="36" height="4" rx="2" fill="#64748b" opacity="0.5"/>
+            <rect x="64" y="72" width="42" height="4" rx="2" fill="#64748b" opacity="0.4"/>
+            <rect x="64" y="82" width="30" height="4" rx="2" fill="#64748b" opacity="0.3"/>
+            <!-- star badge -->
+            <circle cx="100" cy="95" r="10" fill="#f59e0b"/>
+            <text x="95" y="99" font-size="10" fill="white">★</text>
+            <!-- barcode -->
+            <rect x="20" y="95" width="3" height="8" rx="1" fill="#94a3b8"/>
+            <rect x="25" y="95" width="2" height="8" rx="1" fill="#94a3b8"/>
+            <rect x="29" y="95" width="4" height="8" rx="1" fill="#94a3b8"/>
+            <rect x="35" y="95" width="2" height="8" rx="1" fill="#94a3b8"/>
+            <rect x="39" y="95" width="3" height="8" rx="1" fill="#94a3b8"/>
+            <rect x="44" y="95" width="2" height="8" rx="1" fill="#94a3b8"/>
+            <rect x="48" y="95" width="4" height="8" rx="1" fill="#94a3b8"/>
+          </svg>
+        </div>
+      </div>
+
+      <!-- Profile card with avatar -->
+      <div class="profile-layout">
+
+        <!-- Left: avatar + quick stats -->
+        <div class="profile-sidebar-card">
+          <div class="profile-avatar-wrap">
+            <!-- Hidden file input -->
+            <input type="file" id="avatarFileInput" accept="image/*"
+                   style="display:none" aria-label="Upload profile picture" />
+
+            <!-- Avatar display: shows photo if set, else initials -->
+            <div class="profile-avatar" id="profileAvatar">S</div>
+
+            <!-- Upload overlay (appears on hover) -->
+            <div class="avatar-upload-overlay" id="avatarUploadOverlay" title="Change photo">
+              <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round">
+                <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8
+                         a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/>
+                <circle cx="12" cy="13" r="4"/>
+              </svg>
+              <span>Change Photo</span>
+            </div>
+
+            <!-- Action buttons -->
+            <div class="avatar-action-row">
+              <button class="avatar-btn avatar-btn-upload" id="avatarUploadBtn" title="Upload photo">
+                📷 Upload Photo
+              </button>
+              <button class="avatar-btn avatar-btn-remove" id="avatarRemoveBtn"
+                      title="Remove photo" style="display:none">
+                🗑️ Remove
+              </button>
+            </div>
+          </div>
+
+          <!-- Colour picker (shown only when no photo) -->
+          <div id="avatarColorRow" class="avatar-color-row">
+            <span class="avatar-color-label">Background:</span>
+            <div class="avatar-color-swatches" id="avatarSwatches"></div>
+          </div>
+          <div class="profile-display-name" id="profileDisplayName">Student</div>
+          <div class="profile-display-course" id="profileDisplayCourse">—</div>
+          <div class="profile-display-inst" id="profileDisplayInst">—</div>
+
+          <div class="profile-quick-stats">
+            <div class="pqs-item">
+              <div class="pqs-val" id="pqsGoal">6h</div>
+              <div class="pqs-lbl">Daily Goal</div>
+            </div>
+            <div class="pqs-item">
+              <div class="pqs-val" id="pqsDone">0</div>
+              <div class="pqs-lbl">Tasks Done</div>
+            </div>
+            <div class="pqs-item">
+              <div class="pqs-val" id="pqsTotal">0</div>
+              <div class="pqs-lbl">Total Tasks</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right: edit form -->
+        <div class="profile-form-card card">
+          <h2 class="card-title">Edit Profile</h2>
+          <form id="profileForm" novalidate>
+            <div class="form-grid">
+              <div class="form-group">
+                <label for="profName">Full Name *</label>
+                <input type="text" id="profName" placeholder="e.g. Alex Johnson" maxlength="80" />
+              </div>
+              <div class="form-group">
+                <label for="profEmail">Email Address</label>
+                <input type="text" id="profEmail" placeholder="e.g. alex@university.edu" maxlength="120" />
+              </div>
+              <div class="form-group">
+                <label for="profInstitution">Institution / University</label>
+                <input type="text" id="profInstitution" placeholder="e.g. MIT" maxlength="100" />
+              </div>
+              <div class="form-group">
+                <label for="profCourse">Course / Programme</label>
+                <input type="text" id="profCourse" placeholder="e.g. B.Sc. Computer Science" maxlength="100" />
+              </div>
+              <div class="form-group">
+                <label for="profYear">Year / Level</label>
+                <select id="profYear">
+                  <option value="">Select year</option>
+                  <option value="1st Year">1st Year</option>
+                  <option value="2nd Year">2nd Year</option>
+                  <option value="3rd Year">3rd Year</option>
+                  <option value="4th Year">4th Year</option>
+                  <option value="Postgraduate">Postgraduate</option>
+                  <option value="PhD">PhD</option>
+                  <option value="Other">Other</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="profGoal">Daily Study Goal (hours)</label>
+                <input type="number" id="profGoal" min="1" max="24" step="0.5" placeholder="e.g. 6" />
+              </div>
+            </div>
+            <div class="form-group" style="margin-bottom:16px;">
+              <label for="profBio">Short Bio / Note</label>
+              <textarea id="profBio" placeholder="e.g. Final year student aiming for a First. Coffee addict ☕" maxlength="200" rows="3"></textarea>
+            </div>
+            <div class="form-error" id="profileError"></div>
+            <div class="form-actions">
+              <button type="submit" class="btn btn-primary" id="profileSaveBtn">💾 Save Profile</button>
+              <button type="button" class="btn btn-ghost" id="profileResetBtn">Reset</button>
+            </div>
+          </form>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ===== SUBJECTS & HEATMAP ===== -->
+    <section class="section" id="section-subjects">
+      <div class="section-hero subjects-hero">
+        <div class="hero-text">
+          <h1>Subjects &amp; Syllabus</h1>
+          <p class="subtitle">Track topic mastery with the knowledge heatmap. Green = mastered, yellow = needs revision, red = not understood, grey = not started.</p>
+        </div>
+      </div>
+
+      <!-- Add Subject / Topic -->
+      <div class="card">
+        <div class="card-header-row">
+          <h2 class="card-title">Add Subject &amp; Topic</h2>
+        </div>
+        <div class="form-grid">
+          <div class="form-group">
+            <label for="heatSubject">Subject *</label>
+            <input type="text" id="heatSubject" placeholder="e.g. Mathematics" maxlength="60" />
+          </div>
+          <div class="form-group">
+            <label for="heatTopic">Topic *</label>
+            <input type="text" id="heatTopic" placeholder="e.g. Integration by Parts" maxlength="80" />
+          </div>
+          <div class="form-group">
+            <label for="heatStatus">Status</label>
+            <select id="heatStatus">
+              <option value="not-started">Not Started</option>
+              <option value="not-understood">Not Understood</option>
+              <option value="needs-revision">Needs Revision</option>
+              <option value="mastered">Mastered</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="heatPrereq">Prerequisite Topic (optional)</label>
+            <input type="text" id="heatPrereq" placeholder="e.g. Basic Integration" maxlength="80" />
+          </div>
+        </div>
+        <div class="form-error" id="heatError"></div>
+        <div class="form-actions">
+          <button class="btn btn-primary" id="heatAddBtn">+ Add Topic</button>
+        </div>
+      </div>
+
+      <!-- Heatmap grid -->
+      <div id="heatmapContainer"></div>
+
+      <!-- Confidence vs Reality Checker -->
+      <div class="card">
+        <h2 class="card-title">🧠 Confidence vs Reality Checker</h2>
+        <p class="help-text">After a quiz or test, record your result here. We'll flag topics where your confidence doesn't match your actual performance.</p>
+        <div class="form-grid">
+          <div class="form-group">
+            <label for="quizTopic">Topic</label>
+            <input type="text" id="quizTopic" placeholder="e.g. Integration by Parts" maxlength="80" />
+          </div>
+          <div class="form-group">
+            <label for="quizSubject">Subject</label>
+            <input type="text" id="quizSubject" placeholder="e.g. Mathematics" maxlength="60" />
+          </div>
+          <div class="form-group">
+            <label for="quizConfidence">Confidence (1–5)</label>
+            <select id="quizConfidence">
+              <option value="1">1 — Not confident</option>
+              <option value="2">2 — Slightly confident</option>
+              <option value="3" selected>3 — Somewhat confident</option>
+              <option value="4">4 — Fairly confident</option>
+              <option value="5">5 — Very confident</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="quizAccuracy">Quiz Accuracy (%)</label>
+            <input type="number" id="quizAccuracy" min="0" max="100" step="1" placeholder="e.g. 65" />
+          </div>
+        </div>
+        <div class="form-error" id="quizError"></div>
+        <div class="form-actions">
+          <button class="btn btn-primary" id="quizSubmitBtn">📊 Record Result</button>
+        </div>
+        <div id="quizResultsList" style="margin-top:16px;"></div>
+      </div>
+
+      <!-- Marks Improvement Planner -->
+      <div class="card">
+        <h2 class="card-title">📈 Marks Improvement Planner</h2>
+        <p class="help-text">Enter your target and current practice-test marks to see the gap and get topic recommendations. <em>Note: this does not predict actual exam results.</em></p>
+        <div class="form-grid">
+          <div class="form-group">
+            <label for="marksSubject">Subject</label>
+            <input type="text" id="marksSubject" placeholder="e.g. Mathematics" maxlength="60" />
+          </div>
+          <div class="form-group">
+            <label for="marksCurrent">Current Practice Score (%)</label>
+            <input type="number" id="marksCurrent" min="0" max="100" step="1" placeholder="e.g. 55" />
+          </div>
+          <div class="form-group">
+            <label for="marksTarget">Target Score (%)</label>
+            <input type="number" id="marksTarget" min="0" max="100" step="1" placeholder="e.g. 75" />
+          </div>
+        </div>
+        <div class="form-error" id="marksError"></div>
+        <button class="btn btn-primary" id="marksAddBtn">Save Target</button>
+        <div id="marksDisplay" style="margin-top:16px;"></div>
+      </div>
+    </section>
+
+    <!-- ===== REVISION QUEUE ===== -->
+    <section class="section" id="section-revision">
+      <div class="section-hero revision-hero">
+        <div class="hero-text">
+          <h1>Smart Revision Queue</h1>
+          <p class="subtitle">Topics ranked by weakness, overdue revisions, quiz mistakes, and upcoming exams. Uses a deterministic scoring algorithm — not an AI service.</p>
+        </div>
+      </div>
+
+      <!-- What-If Simulator -->
+      <div class="card">
+        <div class="card-header-row">
+          <h2 class="card-title">⚖️ Schedule Trade-Off Simulator</h2>
+          <button class="btn btn-ghost btn-sm" id="simToggleBtn">Show Simulator</button>
+        </div>
+        <div id="simulatorPanel" style="display:none;">
+          <p class="help-text">Simulate missing a day or changing available hours without overwriting your real plan.</p>
+          <div class="form-grid">
+            <div class="form-group">
+              <label for="simMissDay">Simulate Missing Day</label>
+              <select id="simMissDay">
+                <option value="">— None —</option>
+                <option>Sunday</option><option>Monday</option><option>Tuesday</option>
+                <option>Wednesday</option><option>Thursday</option><option>Friday</option><option>Saturday</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="simDailyHours">Reduce Daily Hours By</label>
+              <input type="number" id="simDailyHours" min="0" max="8" step="0.5" value="0" placeholder="e.g. 2" />
+            </div>
+          </div>
+          <div class="form-actions">
+            <button class="btn btn-amber" id="simRunBtn">▶ Run Simulation</button>
+            <button class="btn btn-ghost" id="simClearBtn">✕ Cancel</button>
+          </div>
+          <div id="simResult" style="margin-top:16px;"></div>
+        </div>
+      </div>
+
+      <!-- Revision queue list -->
+      <div class="card">
+        <div class="card-header-row">
+          <h2 class="card-title">📚 Priority Revision Topics</h2>
+          <button class="btn btn-primary btn-sm" id="refreshQueueBtn">↺ Refresh</button>
+        </div>
+        <div id="revisionQueue"></div>
+      </div>
+
+      <!-- Micro-task generator -->
+      <div class="card" id="microTaskCard">
+        <div class="card-header-row">
+          <h2 class="card-title">⚡ Micro-Task Generator</h2>
+          <button class="btn btn-ghost btn-sm" id="microGenBtn">Generate for Top Topic</button>
+        </div>
+        <p class="help-text">Break a topic into 10–20 minute study tasks. Mark each one done as you go.</p>
+        <div id="microTaskList"></div>
+      </div>
+
+      <!-- Distraction Recovery -->
+      <div class="card">
+        <h2 class="card-title">😵 Distraction Recovery</h2>
+        <p class="help-text">Got distracted? No shame — it happens to everyone. Choose how to get back on track:</p>
+        <div id="distractionStatus" style="margin-bottom:12px;"></div>
+        <div class="form-actions">
+          <button class="btn btn-amber" id="distractBtn">😵 I Got Distracted</button>
+          <button class="btn btn-primary btn-sm" id="restart5Btn" style="display:none">⏱ 5-Min Restart</button>
+          <button class="btn btn-ghost btn-sm" id="shortTaskBtn" style="display:none">📝 Shorter Task</button>
+          <button class="btn btn-ghost btn-sm" id="resumeBtn" style="display:none">▶ Resume Next Task</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== EXAM READINESS ===== -->
+    <section class="section" id="section-readiness">
+      <div class="section-hero readiness-hero">
+        <div class="hero-text">
+          <h1>Exam Readiness</h1>
+          <p class="subtitle">An estimated readiness score based on syllabus completion, quiz accuracy, and topic mastery. <em>This is an estimate, not a prediction of actual results.</em></p>
+        </div>
+      </div>
+
+      <!-- Readiness score -->
+      <div class="card">
+        <div class="card-header-row">
+          <h2 class="card-title">🎯 Overall Readiness Score</h2>
+          <button class="btn btn-primary btn-sm" id="refreshReadinessBtn">↺ Recalculate</button>
+        </div>
+        <div id="readinessScore"></div>
+      </div>
+
+      <!-- Subject risk cards -->
+      <div class="card">
+        <h2 class="card-title">⚠️ Subject Risk Analysis</h2>
+        <div id="subjectRisk"></div>
+      </div>
+
+      <!-- Countdown strategy -->
+      <div class="card">
+        <h2 class="card-title">📅 Exam-Day Countdown Strategy</h2>
+        <div id="countdownStrategy"></div>
+      </div>
+
+      <!-- Deadline collision -->
+      <div class="card">
+        <h2 class="card-title">💥 Deadline Collision Warning</h2>
+        <div id="deadlineCollision"></div>
+      </div>
+
+      <!-- Comeback score -->
+      <div class="card">
+        <div class="card-header-row">
+          <h2 class="card-title">🏆 Comeback Score</h2>
+        </div>
+        <div id="comebackScore"></div>
+      </div>
+
+      <!-- Study method switcher -->
+      <div class="card">
+        <h2 class="card-title">🔀 Study Method Switcher</h2>
+        <p class="help-text">When you keep struggling with a topic, we suggest switching study methods. These suggestions are based on transparent rules, not an AI model.</p>
+        <div id="methodSwitcher"></div>
+      </div>
+    </section>
+
+    <!-- ===== DAILY REVIEW ===== -->
+    <section class="section" id="section-dailyreview">
+      <div class="section-hero dailyreview-hero">
+        <div class="hero-text">
+          <h1>Daily Review</h1>
+          <p class="subtitle">Reflect on today's study session, record what happened, and improve tomorrow's plan.</p>
+        </div>
+      </div>
+
+      <!-- Plan vs Reality -->
+      <div class="card">
+        <h2 class="card-title">📊 Plan vs Reality Tracker</h2>
+        <div class="form-grid">
+          <div class="form-group">
+            <label for="pvDate">Date</label>
+            <input type="date" id="pvDate" />
+          </div>
+          <div class="form-group">
+            <label for="pvPlanned">Planned Study (minutes)</label>
+            <input type="number" id="pvPlanned" min="0" max="1440" step="5" placeholder="e.g. 120" />
+          </div>
+          <div class="form-group">
+            <label for="pvActual">Actual Study (minutes)</label>
+            <input type="number" id="pvActual" min="0" max="1440" step="5" placeholder="e.g. 95" />
+          </div>
+          <div class="form-group">
+            <label for="pvNote">Note (optional)</label>
+            <input type="text" id="pvNote" placeholder="e.g. Got distracted after 1h" maxlength="120" />
+          </div>
+        </div>
+        <div class="form-error" id="pvError"></div>
+        <button class="btn btn-primary" id="pvSaveBtn">Save Today's Log</button>
+        <div id="pvHistory" style="margin-top:16px;"></div>
+      </div>
+
+      <!-- Daily Study Autopsy -->
+      <div class="card">
+        <h2 class="card-title">🔍 Daily Study Autopsy</h2>
+        <p class="help-text">Completed tasks, missed tasks, time spent, and an optional reason for any misses. Used to improve tomorrow's plan.</p>
+        <div id="autopsySummary"></div>
+        <div id="autopsyMissed" style="margin-top:16px;"></div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ===== MODALS ===== -->
+  <div class="modal-overlay" id="modalOverlay" style="display:none;">
+    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+      <div class="modal-header">
+        <h2 id="modalTitle">Edit Task</h2>
+        <button class="modal-close" id="modalClose" aria-label="Close">✕</button>
+      </div>
+      <div class="modal-body" id="modalBody"></div>
+    </div>
+  </div>
+
+  <div class="modal-overlay" id="confirmOverlay" style="display:none;">
+    <div class="modal modal-sm" role="dialog" aria-modal="true">
+      <div class="modal-header">
+        <h2 id="confirmTitle">Confirm</h2>
+      </div>
+      <div class="modal-body">
+        <p id="confirmMsg"></p>
+        <div class="form-actions">
+          <button class="btn btn-danger" id="confirmYes">Yes, proceed</button>
+          <button class="btn btn-ghost" id="confirmNo">Cancel</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+  <script src="rescue.js"></script>
+  <script src="chatbot.js"></script>
+
+  <!-- ===== FLOATING CHATBOT ===== -->
+  <div id="chatWidget" class="chat-widget" role="dialog" aria-label="Study Assistant Chat">
+
+    <!-- Drag handle / header -->
+    <div class="chat-header" id="chatHeader">
+      <div class="chat-header-left">
+        <div class="chat-bot-avatar">
+          <svg viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="18" cy="18" r="18" fill="#f59e0b"/>
+            <!-- owl face -->
+            <ellipse cx="18" cy="20" rx="11" ry="10" fill="#1a2744"/>
+            <ellipse cx="18" cy="22" rx="7" ry="7" fill="#f5f0e8"/>
+            <circle cx="14" cy="18" r="4" fill="white"/>
+            <circle cx="22" cy="18" r="4" fill="white"/>
+            <circle cx="15" cy="18" r="2.5" fill="#1a2744"/>
+            <circle cx="23" cy="18" r="2.5" fill="#1a2744"/>
+            <circle cx="15.5" cy="17" r="1" fill="white"/>
+            <circle cx="23.5" cy="17" r="1" fill="white"/>
+            <polygon points="18,22 16,26 20,26" fill="#f59e0b"/>
+            <!-- ears -->
+            <polygon points="9,12 6,4 13,10" fill="#1a2744"/>
+            <polygon points="27,12 30,4 23,10" fill="#1a2744"/>
+          </svg>
+        </div>
+        <div>
+          <div class="chat-bot-name">StudyBot 🦉</div>
+          <div class="chat-bot-status" id="chatStatus">
+            <span class="status-dot"></span> Online
+          </div>
+        </div>
+      </div>
+      <div class="chat-header-actions">
+        <button class="chat-action-btn" id="chatMinimize" title="Minimise">—</button>
+        <button class="chat-action-btn" id="chatClose" title="Close">✕</button>
+      </div>
+    </div>
+
+    <!-- Resize handle (top-left corner) -->
+    <div class="chat-resize-handle" id="chatResizeHandle" title="Drag to resize">⤡</div>
+
+    <!-- Messages area -->
+    <div class="chat-messages" id="chatMessages"></div>
+
+    <!-- Quick suggestion chips -->
+    <div class="chat-chips" id="chatChips"></div>
+
+    <!-- Input area -->
+    <div class="chat-input-area">
+      <input type="text" id="chatInput" class="chat-input"
+             placeholder="Ask me anything about studying…" maxlength="300"
+             autocomplete="off" aria-label="Chat message" />
+      <button class="chat-send-btn" id="chatSend" aria-label="Send message">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
+          <line x1="22" y1="2" x2="11" y2="13"/>
+          <polygon points="22 2 15 22 11 13 2 9 22 2"/>
+        </svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- Chat toggle button (FAB) -->
+  <button class="chat-fab" id="chatFab" aria-label="Open Study Assistant">
+    <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="20" cy="20" r="20" fill="#f59e0b"/>
+      <ellipse cx="20" cy="22" rx="11" ry="10" fill="#1a2744"/>
+      <ellipse cx="20" cy="24" rx="7" ry="7" fill="#f5f0e8"/>
+      <circle cx="16" cy="20" r="4" fill="white"/>
+      <circle cx="24" cy="20" r="4" fill="white"/>
+      <circle cx="17" cy="20" r="2.5" fill="#1a2744"/>
+      <circle cx="25" cy="20" r="2.5" fill="#1a2744"/>
+      <circle cx="17.5" cy="19" r="1" fill="white"/>
+      <circle cx="25.5" cy="19" r="1" fill="white"/>
+      <polygon points="20,24 18,28 22,28" fill="#f59e0b"/>
+      <polygon points="11,14 8,6 15,12" fill="#1a2744"/>
+      <polygon points="29,14 32,6 25,12" fill="#1a2744"/>
+    </svg>
+    <span class="chat-fab-badge" id="chatFabBadge" style="display:none">1</span>
+  </button>
+
+</body>
+</html>
